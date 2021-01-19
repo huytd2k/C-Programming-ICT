@@ -1,10 +1,10 @@
 #ifndef student
 #define student
 
-struct Student
+typedef struct 
 { 
     char name[255];
     float score;
-};
+} Student;
 
 #endif

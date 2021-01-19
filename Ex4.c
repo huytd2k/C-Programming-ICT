@@ -23,16 +23,8 @@ void printCard(pair card);
 void printFourOfAKind(pair card[]);
 char *decodeSuit(int code);
 char *decodeRank(int code);
-
 pair distribute_a_card();
-
-void printBreak()
-{
-    printf("\n");
-    for (int i = 0; i < 65; i++)
-        putchar('=');
-    printf("\n");
-}
+void printBreak();
 
 int main()
 {
@@ -176,4 +168,12 @@ char *decodeRank(int code)
     default:
         break;
     }
+}
+
+void printBreak()
+{
+    printf("\n");
+    for (int i = 0; i < 65; i++)
+        putchar('=');
+    printf("\n");
 }

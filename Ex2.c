@@ -4,37 +4,37 @@
 #include <assert.h>
 #define ull unsigned long long int
 
-struct Object
+typedef struct 
 {
     int weight;
     int value;
     int quanity;
     float unitVal;
     char name;
-};
+} Object;
 
 /*
    Anonymous function to compare two objects by unit value 
 */
 int comparator(const void *ptr1, const void *ptr2)
 {
-    struct Object obj1 = *(struct Object *)ptr1;
-    struct Object obj2 = *(struct Object *)ptr2;
+    Object obj1 = *(Object *)ptr1;
+    Object obj2 = *(Object *)ptr2;
     return (obj1.unitVal < obj2.unitVal) - (obj1.unitVal > obj2.unitVal);
 }
 
 /*
     Dynamic allocate array of objects
 */
-struct Object *mallocObjects(int size)
+Object *mallocObjects(int size)
 {
-    return (struct Object *)malloc(size * sizeof(struct Object));
+    return (Object *)malloc(size * sizeof(Object));
 }
 
 /*
     Helper function to debug
 */
-void printObject(struct Object obj)
+void printObject(Object obj)
 {
     printf("%c(%d,%d) : %d \n", obj.name, obj.weight, obj.value, obj.quanity);
 }
@@ -50,18 +50,18 @@ int main()
 
     fscanf(input_file, "%d %d", &N, &T);
 
-    struct Object *objects = mallocObjects(N);
+    Object *objects = mallocObjects(N);
 
     for (int i = 0; i < N; i++)
     {
-        struct Object tmp;
+        Object tmp;
         fscanf(input_file, "%d %d %c", &tmp.weight, &tmp.value, &tmp.name);
         tmp.unitVal = (float)(tmp.value) / (float)(tmp.weight);
 
         objects[i] = tmp;
     }
 
-    qsort(objects, N, sizeof(struct Object), comparator);
+    qsort(objects, N, sizeof(Object), comparator);
 
     int cur_weight = T;
     int cur_var = 0;

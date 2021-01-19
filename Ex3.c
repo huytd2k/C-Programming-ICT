@@ -15,7 +15,7 @@ void printBreak();
 void handleAddStudent();
 void handleSearchStudent();
 void searchAndPrintStudentRow(char *query);
-void appendStudent(struct Student stu);
+void appendStudent(Student stu);
 void printStudentRows();
 
 int main()
@@ -70,7 +70,7 @@ void printBreak()
 
 void handleAddStudent()
 {
-    struct Student new_student;
+    Student new_student;
     char name[255];
 
     printf("Nhap ten:   ");
@@ -109,8 +109,8 @@ void handleSearchStudent()
 void searchAndPrintStudentRow(char *query)
 {
     FILE *file = fopen(DATA_PATH, "ab+");
-    struct Student cur_student;
-    while (fread(&cur_student, sizeof(struct Student), 1, file))
+    Student cur_student;
+    while (fread(&cur_student, sizeof(Student), 1, file))
     {
         if (!strstr(cur_student.name, query)) //* Check if query is substring of current student
             continue; // Otherwise skip this student
@@ -122,10 +122,10 @@ void searchAndPrintStudentRow(char *query)
     fclose(file);
 }
 
-void appendStudent(struct Student stu)
+void appendStudent(Student stu)
 {
     FILE *file = fopen(DATA_PATH, "ab+");
-    int result = fwrite(&stu, sizeof(struct Student), 1, file);
+    int result = fwrite(&stu, sizeof(Student), 1, file);
     assert(result != 0);
     fclose(file);
 }
@@ -133,8 +133,8 @@ void appendStudent(struct Student stu)
 void printStudentRows()
 {
     FILE *file = fopen(DATA_PATH, "ab+");
-    struct Student tmp;
-    while (fread(&tmp, sizeof(struct Student), 1, file))
+    Student tmp;
+    while (fread(&tmp, sizeof(Student), 1, file))
     {
         printf("| %30s| %30.2f| \n", tmp.name, tmp.score);
         printBreak();
