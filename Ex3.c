@@ -107,7 +107,7 @@ void handleSearchStudent()
 
 void searchAndPrintStudentRow(char *query)
 {
-    FILE *file = fopen(DATA_PATH, "ab+");
+    FILE *file = fopen(DATA_PATH, "r");
     Student cur_student;
     while (fread(&cur_student, sizeof(Student), 1, file))
     {
