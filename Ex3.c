@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 #include <string.h>
 #include <assert.h>
 #include <ctype.h>
@@ -113,7 +112,7 @@ void searchAndPrintStudentRow(char *query)
     while (fread(&cur_student, sizeof(Student), 1, file))
     {
         if (!strstr(cur_student.name, query)) //* Check if query is substring of current student
-            continue; // Otherwise skip this student
+            continue;                         // Otherwise skip this student
 
         printf("| %29s | %29.2f | \n", cur_student.name, cur_student.score);
         printBreak();
@@ -132,9 +131,9 @@ void appendStudent(Student stu)
 
 void printStudentRows()
 {
-    FILE *file = fopen(DATA_PATH, "ab+");
+    FILE *file = fopen(DATA_PATH, "r");
     Student tmp;
-    while (fread(&tmp, sizeof(Student), 1, file))
+    while (fread(&tmp, sizeof(Student), 1, file) )
     {
         printf("| %30s| %30.2f| \n", tmp.name, tmp.score);
         printBreak();
