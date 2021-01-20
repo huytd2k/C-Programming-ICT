@@ -77,7 +77,7 @@ int main()
 
         objects[i].quanity = quanitity;
 
-        printObject(objects[i]);
+        // printObject(objects[i]);
     }
 
     printf("%d \n", cur_var);
