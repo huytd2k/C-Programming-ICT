@@ -134,6 +134,7 @@ char *decodeSuit(int code)
     default:
         break;
     }
+    return "";
 }
 char *decodeRank(int code)
 {
@@ -166,8 +167,10 @@ char *decodeRank(int code)
     case 12:
         return "K";
     default:
+        printf("Error!");
         break;
     }
+    return "";
 }
 
 void printBreak()
