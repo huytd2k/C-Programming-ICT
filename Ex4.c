@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <assert.h>
 
 typedef struct
 {
@@ -24,6 +25,7 @@ void printFourOfAKind(pair card[]);
 char *decodeSuit(int code);
 char *decodeRank(int code);
 pair distribute_a_card();
+void printAllCards(pair card[]);
 void printBreak();
 
 int main()
@@ -38,7 +40,6 @@ int main()
     pair fourth_player_cards[13];
     srand((unsigned)time(&t));
 
-    // printf("%d", rand());
     for (int i = 0; i < 13; i++)
     {
         first_player_cards[i] = distribute_a_card();
@@ -46,37 +47,18 @@ int main()
         third_player_cards[i] = distribute_a_card();
         fourth_player_cards[i] = distribute_a_card();
     }
+
     printf("Nguoi choi thu 1 co :\n");
-    for (int i = 0; i < 13; i++)
-    {
-        printCard(first_player_cards[i]);
-    }
-    printFourOfAKind(first_player_cards);
-    printBreak();
+    printAllCards(first_player_cards);
 
     printf("\nNguoi choi thu 2 co :\n");
-    for (int i = 0; i < 13; i++)
-    {
-        printCard(second_player_cards[i]);
-    }
-    printFourOfAKind(second_player_cards);
-    printBreak();
+    printAllCards(second_player_cards);
 
     printf("\nNguoi choi thu 3 co :\n");
-    for (int i = 0; i < 13; i++)
-    {
-        printCard(third_player_cards[i]);
-    }
-    printFourOfAKind(third_player_cards);
-    printBreak();
+    printAllCards(third_player_cards);
 
     printf("\nNguoi choi thu 4 co :\n");
-    for (int i = 0; i < 13; i++)
-    {
-        printCard(fourth_player_cards[i]);
-    }
-    printFourOfAKind(fourth_player_cards);
-    printBreak();
+    printAllCards(fourth_player_cards);
     return 0;
 }
 
@@ -102,6 +84,16 @@ void printCard(pair card)
     printf("|%s %s", rank, suite);
 }
 
+void printAllCards(pair cards[])
+{
+    for (int i = 0; i < 13; i++)
+    {
+        printCard(cards[i]);
+    }
+    printFourOfAKind(cards);
+    printBreak();
+}
+
 void printFourOfAKind(pair card[])
 {
     int count[13];
@@ -112,7 +104,6 @@ void printFourOfAKind(pair card[])
     }
     for (int i = 0; i < 13; i++)
     {
-        // printf("%d \n", count[i]);
         if (count[i] < 4)
             continue;
         printf("\n Co tu quy %s", decodeRank(i));
@@ -132,6 +123,7 @@ char *decodeSuit(int code)
     case 3:
         return "tep";
     default:
+        assert(1 != 1);
         break;
     }
     return "";
@@ -167,7 +159,7 @@ char *decodeRank(int code)
     case 12:
         return "K";
     default:
-        printf("Error!");
+        assert(1 != 1);
         break;
     }
     return "";
