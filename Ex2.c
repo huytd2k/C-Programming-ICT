@@ -50,18 +50,18 @@ int main()
 
     fscanf(input_file, "%d %d", &N, &T);
 
-    Object *objects = mallocObjects(N);
+    Object *objects = mallocObjects(N); //* Cấp phát động objects
 
     for (int i = 0; i < N; i++)
     {
         Object tmp;
         fscanf(input_file, "%d %d %c", &tmp.weight, &tmp.value, &tmp.name);
-        tmp.unitVal = (float)(tmp.value) / (float)(tmp.weight);
+        tmp.unitVal = (float)(tmp.value) / (float)(tmp.weight); //* TÍnh giá trí trên khối lượng từng object
 
         objects[i] = tmp;
     }
 
-    qsort(objects, N, sizeof(Object), comparator);
+    qsort(objects, N, sizeof(Object), comparator); //* Sắp xếp mảng object theo giá trị trên khối lượng
 
     int cur_weight = T;
     int cur_var = 0;
@@ -70,12 +70,12 @@ int main()
     {
         // https://www.tutorialspoint.com/c_standard_library/c_function_div.htm
         div_t divRet = div(cur_weight, objects[i].weight);
-        int quanitity = divRet.quot;
+        int quanitity = divRet.quot; //* thương của phép chia là số lượng đồ vật này được lấy
 
         cur_var += quanitity * objects[i].value;
-        cur_weight = divRet.rem;
+        cur_weight = divRet.rem;//* phần dư thì là khối lượng còn lại để cho thêm những vật tiếp theo
 
-        objects[i].quanity = quanitity;
+        objects[i].quanity = quanitity; 
 
         // printObject(objects[i]);
     }

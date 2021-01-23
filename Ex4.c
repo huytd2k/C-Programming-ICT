@@ -64,16 +64,16 @@ int main()
 
 pair distribute_a_card()
 {
-    int random_number = rand() % 52;
+    int random_number = rand() % 52; //*tính số ngẫu nhiên
     int col = random_number / 4;
     int row = random_number % 4;
     while (c[col][row] == 1)
     {
-        random_number = (random_number == 51) ? 0 : random_number + 1;
+        random_number = (random_number == 51) ? 0 : random_number + 1; //* nếu lá này đã được phát thì tăng số ngẫu nhiên lên 1, nếu nó đã là số cuối cùng (51) thì trở về 0
         col = random_number / 4;
         row = random_number % 4;
     }
-    c[col][row] = 1;
+    c[col][row] = 1; //* đánh dấu lá đã chia
     return make_pair(col, row);
 }
 
@@ -96,7 +96,7 @@ void printAllCards(pair cards[])
 
 void printFourOfAKind(pair card[])
 {
-    int count[13];
+    int count[13]; // mảng đếm số lần xuât hiện các lá bài
     memset(count, 0, sizeof(int) * 13);
     for (int i = 0; i < 13; i++)
     {
@@ -106,7 +106,7 @@ void printFourOfAKind(pair card[])
     {
         if (count[i] < 4)
             continue;
-        printf("\n Co tu quy %s", decodeRank(i));
+        printf("\n Co tu quy %s", decodeRank(i)); // nếu là đó xuất hiện 4 lần thì là có tứ quý của lá đấy
     }
 }
 
