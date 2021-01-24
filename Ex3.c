@@ -42,7 +42,7 @@ int main()
             printf("Lua chon khong hop le!");
             break;
         }
-    } while (choice != '4');
+    } while (choice != 4);
 }
 
 void printMenu()
